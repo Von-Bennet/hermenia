@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The 12th Fail: Beginning and Aftermath</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="icon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* CSS Variable Mapping manually since Next.js handled imports */
+      :root {
+        --font-inter: "Inter", sans-serif;
+        --font-playfair: "Playfair Display", serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="min-h-screen">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-bg"></div>
+
+        <div class="container hero-content animate-fade-in">
+          <h1 class="hero-title">The 12th Fail</h1>
+          <p class="hero-subtitle">
+            Beginning and Aftermath. A journey through failure, resilience, and
+            the ultimate test of character.
+          </p>
+          <div class="flex gap-4 justify-center">
+            <a href="/book.pdf" target="_blank" class="btn">Read Now</a>
+            <a href="#reviews" class="btn-outline">See Reviews</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Section -->
+      <section id="reviews" class="container mt-12 animate-slide-up">
+        <div class="reviews-layout">
+          <!-- Sticky Sidebar -->
+          <div>
+            <div class="sticky-sidebar">
+              <!-- Review Form -->
+              <form id="reviewForm" class="review-form-card">
+                <h3
+                  class="mb-6 text-primary"
+                  style="font-size: 1.5rem; font-family: var(--font-serif)"
+                >
+                  Leave a Review
+                </h3>
+
+                <div class="form-group">
+                  <label class="form-label">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    required
+                    class="form-input"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Rating</label>
+                  <div class="flex gap-2" id="starContainer">
+                    <button
+                      type="button"
+                      class="star-btn active"
+                      data-rating="1"
+                    >
+                      ★
+                    </button>
+                    <button
+                      type="button"
+                      class="star-btn active"
+                      data-rating="2"
+                    >
+                      ★
+                    </button>
+                    <button
+                      type="button"
+                      class="star-btn active"
+                      data-rating="3"
+                    >
+                      ★
+                    </button>
+                    <button
+                      type="button"
+                      class="star-btn active"
+                      data-rating="4"
+                    >
+                      ★
+                    </button>
+                    <button
+                      type="button"
+                      class="star-btn active"
+                      data-rating="5"
+                    >
+                      ★
+                    </button>
+                  </div>
+                  <input type="hidden" id="rating" value="5" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Your Review</label>
+                  <textarea
+                    id="comment"
+                    required
+                    rows="4"
+                    class="form-textarea"
+                    placeholder="Tell us what you thought about the book..."
+                  ></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn">
+                  Submit Review
+                </button>
+                <p
+                  id="formStatus"
+                  class="mt-4 text-center"
+                  style="min-height: 1.5rem"
+                ></p>
+              </form>
+
+              <!-- Author Box -->
+              <div class="author-box">
+                <h4 class="mb-4 text-primary" style="font-size: 1.25rem">
+                  About the Author
+                </h4>
+                <p style="color: var(--text-muted); line-height: 1.6">
+                  Sharing a personal journey to inspire others. Connect with me
+                  on social media or leave a review to share your thoughts.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review List -->
+          <div>
+            <div id="reviewsList" class="space-y-6">
+              <p class="text-center" style="color: var(--text-muted)">
+                Loading reviews...
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

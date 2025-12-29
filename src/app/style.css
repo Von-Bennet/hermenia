@@ -1,0 +1,204 @@
+:root {
+  --background: #050505; /* Deepest black */
+  --foreground: #e0e0e0;
+  --primary: #d4af37; /* Brighter Gold for contrast */
+  --primary-hover: #b38b28;
+  --surface: #0a0a0a; /* Solid near-black, less transparency */
+  --surface-hover: #141414;
+  --border: rgba(255, 255, 255, 0.15); /* Slightly stronger border */
+  --text-muted: #999999;
+  
+  --font-serif: "Times New Roman", Times, serif; 
+  --radius: 0px; 
+  --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Container Tightening */
+  --container-width: 1000px; /* Much more focused reading width */
+}
+
+/* ... (keep existing resets) ... */
+
+/* Hero Section Refinements */
+.hero-section {
+  position: relative;
+  height: 70vh; /* standard viewport height, not overwhelming */
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ... (background styles same) ... */
+
+.hero-content {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 700px; /* Prevent text from traversing entire screen width */
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem; /* More controlled size */
+  margin-bottom: 1rem;
+  font-style: italic;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  max-width: 480px; /* Optimal reading line length */
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  line-height: 1.6;
+}
+
+/* Review Form Styling */
+.review-form-card {
+  background: linear-gradient(145deg, rgba(30, 30, 30, 0.4), rgba(20, 20, 20, 0.6));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1rem 0;
+  color: var(--foreground);
+  transition: all 0.3s;
+  font-size: 1.1rem;
+  font-family: var(--font-serif); /* Editorial feel for input text */
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+  font-family: var(--font-inter);
+  font-size: 0.9rem;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-bottom-color: var(--primary);
+  background-color: transparent;
+}
+
+.star-btn {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 0 5px;
+}
+
+.star-btn:hover {
+  transform: scale(1.2);
+  color: var(--primary-hover);
+}
+
+.star-btn.active {
+  color: var(--primary);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Submit Button Override for this form */
+.review-form-card .btn {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: var(--primary);
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.review-form-card .btn:hover {
+  background-color: #fff;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* Review List Styling */
+.review-card {
+  background-color: transparent;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin-bottom: 0;
+  transition: opacity 0.3s;
+}
+
+.review-card:hover {
+  background-color: transparent;
+  opacity: 0.8;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.review-author {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--foreground);
+}
+
+.review-date {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.review-text {
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+
+/* Author Box */
+.author-box {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--background);
+  border-top: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary); /* Editorial lines */
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  text-align: center;
+}
+
+.text-primary { color: var(--primary); }
+.text-success { color: #4ade80; }
+.text-error { color: #f87171; }

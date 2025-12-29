@@ -1,0 +1,33 @@
+{
+  "name": "hermenia",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "start-vanilla": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.2",
+    "next": "^16.1.1",
+    "nodemailer": "^7.0.12",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/nodemailer": "^7.0.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "typescript": "^5"
+  }
+}

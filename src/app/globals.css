@@ -1,0 +1,391 @@
+/* =========================================
+   PREMIUM DESIGN SYSTEM - THE 12TH FAIL
+   ========================================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Color Palette - Noir & Gold */
+    --bg-color: #030303;       /* Deepest Void Black */
+    --bg-accent: #0a0a0a;      /* Slightly lighter black for depth */
+    --text-main: #e0e0e0;      /* Soft White */
+    --text-muted: #888888;     /* Muted Grey */
+    --primary: #C5A046;        /* Antique Gold */
+    --primary-hover: #E6C265;  /* Brighter Gold */
+    
+    /* Surfaces */
+    --surface-glass: rgba(20, 20, 20, 0.6);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-active: rgba(197, 160, 70, 0.5);
+
+    /* Typography */
+    --font-display: var(--font-playfair), serif; /* Next.js Font Variable */
+    --font-body: var(--font-inter), sans-serif;   /* Next.js Font Variable */
+
+    /* Spacing & Layout */
+    --container-width: 1000px;
+    --spacing-unit: 8px;
+    
+    /* Animation */
+    --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* =========================================
+   RESET & BASE STYLES
+   ========================================= */
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Texture Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Background Watermark (Favicon) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vh; /* Massive cinematic size */
+    height: 90vh;
+    background-image: url('/icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: -1;
+    
+    /* Premium Effects */
+    filter: sepia(100%) hue-rotate(5deg) saturate(200%) brightness(0.8); /* Golden Tint */
+    opacity: 0.04; 
+    mix-blend-mode: screen; /* Blends nicely with dark bg */
+    
+    /* Animation: "The Living Mark" */
+    animation: livingMark 15s ease-in-out infinite alternate;
+}
+
+@keyframes livingMark {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 0.03;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(5deg); /* Subtle drift */
+        opacity: 0.06;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--text-main);
+}
+
+a { text-decoration: none; color: inherit; transition: color 0.3s; }
+
+/* =========================================
+   UTILITIES
+   ========================================= */
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-gold { color: var(--primary); }
+.text-center { text-align: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* =========================================
+   COMPONENTS: BUTTONS
+   ========================================= */
+
+.btn {
+    display: inline-block;
+    padding: 18px 42px;
+    background-color: var(--primary);
+    color: #000;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid var(--primary);
+    transition: all 0.4s var(--ease-out);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 18px 42px;
+    background-color: transparent;
+    color: var(--primary);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid rgba(197, 160, 70, 0.3);
+    transition: all 0.4s var(--ease-out);
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    background-color: rgba(197, 160, 70, 0.05);
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+
+.hero {
+    height: 85vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-accent);
+    background: radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(3,3,3,1) 80%);
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 3rem auto;
+    letter-spacing: 0.5px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+/* Mobile Layout */
+@media (max-width: 800px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    .hero-title { font-size: 3.5rem; }
+}
+
+/* =========================================
+   CONTENT SECTION (Layout)
+   ========================================= */
+
+.main-content {
+    display: grid;
+    grid-template-columns: 380px 1fr; /* Fixed sidebar width, fluid content */
+    gap: 60px;
+    padding: 80px 24px;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* =========================================
+   REVIEW FORM (Sidebar)
+   ========================================= */
+
+.review-sidebar {
+    position: sticky;
+    top: 40px;
+}
+
+.form-card {
+    background: linear-gradient(180deg, rgba(20,20,20,0.8) 0%, rgba(10,10,10,0.9) 100%);
+    border: 1px solid var(--border-subtle);
+    padding: 40px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.form-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 10px 0;
+    color: var(--text-main);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+}
+
+.form-input::placeholder { color: #333; font-family: var(--font-body); }
+
+/* Star Rating */
+.star-rating {
+    display: flex;
+    gap: 5px;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.star-btn.active, .star-btn:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Author Box */
+.author-box {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.author-title {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.author-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* =========================================
+   REVIEWS LIST
+   ========================================= */
+
+.reviews-header {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.review-item {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+}
+
+.review-author {
+    font-size: 1.4rem;
+    font-family: var(--font-display);
+    color: var(--text-main);
+}
+
+.review-stars {
+    color: var(--primary);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+}
+
+.review-date {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.review-body {
+    font-size: 1.05rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.text-status { margin-top: 1rem; font-size: 0.9rem; }
+.success { color: #4CAF50; }
+.error { color: #F44336; }
