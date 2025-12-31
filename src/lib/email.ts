@@ -21,18 +21,25 @@ export async function sendNotificationEmail(review: { name: string; rating: numb
     },
   });
 
-  await transporter.sendMail({
-    from: '"Book Reviews" <noreply@example.com>',
-    to: process.env.NOTIFICATION_EMAIL || 'bigpapilacosta092woo@gmail.com', 
-    subject: `New Review: ${review.rating} Stars from ${review.name}`,
-    text: `You have received a new review:\n\nName: ${review.name}\nRating: ${review.rating}/5\n\n"${review.comment}"`,
-    html: `
-      <h2>New Review Received</h2>
-      <p><strong>Name:</strong> ${review.name}</p>
-      <p><strong>Rating:</strong> ${review.rating}/5 stars</p>
-      <blockquote style="background: #f9f9f9; padding: 10px; border-left: 5px solid #ccc;">
-        "${review.comment}"
-      </blockquote>
-    `,
-  });
+  try {
+    console.log(`[EMAIL] Attempting to send notification to: ${process.env.NOTIFICATION_EMAIL}`);
+    const info = await transporter.sendMail({
+      from: '"Book Reviews" <noreply@example.com>',
+      to: process.env.NOTIFICATION_EMAIL || 'bigpapilacosta092woo@gmail.com', 
+      subject: `New Review: ${review.rating} Stars from ${review.name}`,
+      text: `You have received a new review:\n\nName: ${review.name}\nRating: ${review.rating}/5\n\n"${review.comment}"`,
+      html: `
+        <h2>New Review Received</h2>
+        <p><strong>Name:</strong> ${review.name}</p>
+        <p><strong>Rating:</strong> ${review.rating}/5 stars</p>
+        <blockquote style="background: #f9f9f9; padding: 10px; border-left: 5px solid #ccc;">
+          "${review.comment}"
+        </blockquote>
+      `,
+    });
+    console.log(`[EMAIL] Success: ${info.messageId}`);
+  } catch (error) {
+    console.error('[EMAIL] Error occurred during sendMail:', error);
+    throw error; // Re-throw so the caller .catch can see it
+  }
 }
