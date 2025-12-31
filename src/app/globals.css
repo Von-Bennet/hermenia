@@ -484,8 +484,8 @@ nextjs-portal,
 
     /* Background Watermark - Safety for overflow */
     body::after {
-        width: 60vh;
-        height: 60vh;
+        width: 70vw !important;
+        height: 70vw !important;
         opacity: 0.05;
         mask-image: radial-gradient(circle, black 30%, transparent 100%);
         -webkit-mask-image: radial-gradient(circle, black 30%, transparent 100%);
