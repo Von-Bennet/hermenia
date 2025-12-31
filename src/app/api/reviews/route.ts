@@ -54,8 +54,12 @@ export async function POST(req: Request) {
       date: new Date(),
     });
 
-    // Send email notification (async, don't block response)
-    sendNotificationEmail({ name, rating, comment }).catch(console.error);
+    // Send email notification (Awaited to ensure completion in serverless environments)
+    try {
+      await sendNotificationEmail({ name, rating, comment });
+    } catch (emailError) {
+      console.error('[API] Email notification failed:', emailError);
+    }
 
     return NextResponse.json({ 
       success: true, 

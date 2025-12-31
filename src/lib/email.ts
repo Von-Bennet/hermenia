@@ -3,18 +3,14 @@ import nodemailer from 'nodemailer';
 export async function sendNotificationEmail(review: { name: string; rating: number; comment: string }) {
   // Check if credentials exist, otherwise mock
   if (!process.env.SMTP_HOST || !process.env.SMTP_USER) {
-    console.log('---------------------------------------------------');
-    console.log(`[MOCK EMAIL] New Review Received from ${review.name}`);
-    console.log(`Rating: ${review.rating}/5`);
-    console.log(`Comment: ${review.comment}`);
-    console.log('---------------------------------------------------');
+    console.error('[EMAIL] CRITICAL: SMTP credentials missing in environment variables!');
     return;
   }
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: false, // true for 465, false for other ports
+    port: 465, // Using SSL/TLS port for better serverless reliability
+    secure: true, 
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
