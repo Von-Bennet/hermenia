@@ -206,48 +206,6 @@ a { text-decoration: none; color: inherit; transition: color 0.3s; }
     gap: 20px;
 }
 
-/* Mobile Layout */
-@media (max-width: 900px) {
-    .hero {
-        height: auto;
-        min-height: 100vh;
-        padding: 100px 0;
-    }
-
-    .hero-title { 
-        font-size: 3rem; 
-        padding: 0 20px;
-    }
-    
-    .hero-subtitle {
-        padding: 0 20px;
-        font-size: 1rem;
-    }
-
-    .main-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 40px 20px;
-    }
-
-    .review-sidebar {
-        position: relative; /* Disable sticky on mobile */
-        top: 0;
-        order: -1; /* Keep form at top? Or remove to put it below content? specific user preference usually varies. keeping as is (top) or let it follow DOM order. 
-                      Actually, usually reviews are read first, then form? 
-                      In the DOM: Sidebar is first. So it appears first. 
-                      I will leave it matching DOM order for now but ensure it scrolls. */
-        width: 100%;
-    }
-    
-    .form-card {
-        padding: 24px;
-    }
-
-    .reviews-header {
-        font-size: 1.5rem;
-    }
-}
 
 /* =========================================
    CONTENT SECTION (Layout)
@@ -432,4 +390,87 @@ nextjs-portal,
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE OVERRIDES
+   ========================================= */
+@media (max-width: 900px) {
+    :root {
+        --container-width: 100%;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 80vh;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .hero-title { 
+        font-size: clamp(2.5rem, 10vw, 4rem); 
+        margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        gap: 12px;
+    }
+
+    .btn, .btn-outline {
+        width: 100%;
+        padding: 16px 24px;
+        text-align: center;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        padding: 60px 20px;
+    }
+
+    .review-sidebar {
+        position: static;
+        width: 100%;
+        order: 1; 
+    }
+    
+    .form-card {
+        padding: 30px 20px;
+    }
+
+    .form-input {
+        font-size: 1rem; 
+    }
+
+    .reviews-feed {
+        order: 2;
+        width: 100%;
+    }
+
+    .reviews-header {
+        font-size: 1.75rem;
+        text-align: center;
+    }
+
+    .review-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    /* Living Mark Adjustments */
+    body::after {
+        width: 70vw;
+        height: 70vw;
+        opacity: 0.05;
+    }
 }
