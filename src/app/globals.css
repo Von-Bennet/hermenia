@@ -393,84 +393,115 @@ nextjs-portal,
 }
 
 /* =========================================
-   MOBILE RESPONSIVE OVERRIDES
+   MOBILE RESPONSIVE OVERRIDES (A04 & High Precision)
    ========================================= */
 @media (max-width: 900px) {
     :root {
         --container-width: 100%;
     }
 
+    body {
+        font-size: 15px; /* Slightly smaller base for mobile balance */
+    }
+
     .hero {
         height: auto;
-        min-height: 80vh;
-        padding: 80px 20px;
+        min-height: 90vh; /* More presence */
+        padding: 100px 24px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-title { 
-        font-size: clamp(2.5rem, 10vw, 4rem); 
-        margin-bottom: 1rem;
+        font-size: clamp(3rem, 12vw, 4.5rem); 
+        letter-spacing: -2px;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        line-height: 1.1;
     }
     
     .hero-subtitle {
-        font-size: 1.125rem;
-        margin-bottom: 2.5rem;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-muted);
+        max-width: 320px;
+        margin: 0 auto 3.5rem auto;
     }
 
     .hero-actions {
+        display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 300px;
-        gap: 12px;
+        max-width: 320px;
+        gap: 16px;
     }
 
+    /* Force consistent height and premium look */
     .btn, .btn-outline {
         width: 100%;
-        padding: 16px 24px;
-        text-align: center;
+        display: block;
+        box-sizing: border-box; /* Ensure padding doesn't break height consistency */
+        height: 60px; /* Fixed height for premium feel */
+        line-height: normal; /* Reset line-height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; 
+        font-size: 0.85rem;
+        letter-spacing: 3px;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, var(--primary) 0%, #E6C265 100%);
+        border: none;
+        box-shadow: 0 4px 20px rgba(197, 160, 70, 0.2);
+    }
+
+    .btn-outline {
+        border: 1px solid rgba(197, 160, 70, 0.4);
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(5px);
     }
 
     .main-content {
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-        padding: 60px 20px;
+        padding: 60px 24px;
+        gap: 80px;
     }
 
     .review-sidebar {
-        position: static;
         width: 100%;
-        order: 1; 
-    }
-    
-    .form-card {
-        padding: 30px 20px;
+        order: 1;
     }
 
-    .form-input {
-        font-size: 1rem; 
+    .form-card {
+        padding: 40px 24px;
+        border-radius: 4px;
     }
 
     .reviews-feed {
-        order: 2;
         width: 100%;
+        order: 2;
     }
 
-    .reviews-header {
-        font-size: 1.75rem;
+    /* Background Watermark Polish - Samsung A04 focus */
+    body::after {
+        width: 80vw;
+        height: 80vw;
+        opacity: 0.06;
+        /* Add mask to soft-edge the boxy icon.png */
+        mask-image: radial-gradient(circle, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle, black 40%, transparent 100%);
+    }
+
+    .form-title {
+        font-size: 2rem;
         text-align: center;
     }
-
-    .review-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    /* Living Mark Adjustments */
-    body::after {
-        width: 70vw;
-        height: 70vw;
-        opacity: 0.05;
+    
+    .review-author {
+        font-size: 1.5rem;
     }
 }
