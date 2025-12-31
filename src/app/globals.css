@@ -36,6 +36,13 @@
    RESET & BASE STYLES
    ========================================= */
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
@@ -43,7 +50,10 @@ body {
     font-size: 16px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 /* Texture Overlay */
@@ -397,111 +407,88 @@ nextjs-portal,
    ========================================= */
 @media (max-width: 900px) {
     :root {
-        --container-width: 100%;
+        --container-width: 100% !important;
     }
 
-    body {
-        font-size: 15px; /* Slightly smaller base for mobile balance */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+        width: 100% !important;
+        position: relative;
     }
 
     .hero {
         height: auto;
-        min-height: 90vh; /* More presence */
-        padding: 100px 24px;
+        min-height: 85vh;
+        padding: 80px 20px;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        overflow: hidden;
     }
 
     .hero-title { 
-        font-size: clamp(3rem, 12vw, 4.5rem); 
-        letter-spacing: -2px;
-        margin-bottom: 2rem;
-        font-weight: 700;
-        line-height: 1.1;
+        font-size: clamp(2.2rem, 10vw, 3.5rem); 
+        letter-spacing: -1px;
+        margin-bottom: 1.5rem;
+        word-wrap: break-word;
     }
     
     .hero-subtitle {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--text-muted);
-        max-width: 320px;
-        margin: 0 auto 3.5rem auto;
+        font-size: 1rem;
+        max-width: 280px;
+        margin: 0 auto 3rem auto;
     }
 
     .hero-actions {
-        display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
-        gap: 16px;
+        max-width: 280px;
+        gap: 12px;
+        margin: 0 auto;
     }
 
-    /* Force consistent height and premium look */
     .btn, .btn-outline {
-        width: 100%;
-        display: block;
-        box-sizing: border-box; /* Ensure padding doesn't break height consistency */
-        height: 60px; /* Fixed height for premium feel */
-        line-height: normal; /* Reset line-height */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0; 
-        font-size: 0.85rem;
-        letter-spacing: 3px;
-    }
-
-    .btn {
-        background: linear-gradient(135deg, var(--primary) 0%, #E6C265 100%);
-        border: none;
-        box-shadow: 0 4px 20px rgba(197, 160, 70, 0.2);
-    }
-
-    .btn-outline {
-        border: 1px solid rgba(197, 160, 70, 0.4);
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(5px);
+        width: 100% !important;
+        height: 56px;
+        font-size: 0.8rem;
     }
 
     .main-content {
-        padding: 60px 24px;
-        gap: 80px;
+        /* Force single column and kill grid layout */
+        display: block !important; 
+        grid-template-columns: 1fr !important;
+        padding: 60px 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 0 !important;
     }
 
     .review-sidebar {
-        width: 100%;
-        order: 1;
+        width: 100% !important;
+        margin-bottom: 60px;
+        position: static !important;
     }
 
     .form-card {
-        padding: 40px 24px;
-        border-radius: 4px;
+        padding: 30px 20px;
     }
 
     .reviews-feed {
-        width: 100%;
-        order: 2;
+        width: 100% !important;
     }
 
-    /* Background Watermark Polish - Samsung A04 focus */
+    .review-item {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+
+    /* Background Watermark - Safety for overflow */
     body::after {
-        width: 80vw;
-        height: 80vw;
-        opacity: 0.06;
-        /* Add mask to soft-edge the boxy icon.png */
-        mask-image: radial-gradient(circle, black 40%, transparent 100%);
-        -webkit-mask-image: radial-gradient(circle, black 40%, transparent 100%);
-    }
-
-    .form-title {
-        font-size: 2rem;
-        text-align: center;
-    }
-    
-    .review-author {
-        font-size: 1.5rem;
+        width: 60vh;
+        height: 60vh;
+        opacity: 0.05;
+        mask-image: radial-gradient(circle, black 30%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle, black 30%, transparent 100%);
+        pointer-events: none;
     }
 }
