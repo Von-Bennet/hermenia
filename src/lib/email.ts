@@ -23,7 +23,7 @@ export async function sendNotificationEmail(review: { name: string; rating: numb
 
   await transporter.sendMail({
     from: '"Book Reviews" <noreply@example.com>',
-    to: 'bigpapilacosta092woo@gmail.com', 
+    to: process.env.NOTIFICATION_EMAIL || 'bigpapilacosta092woo@gmail.com', 
     subject: `New Review: ${review.rating} Stars from ${review.name}`,
     text: `You have received a new review:\n\nName: ${review.name}\nRating: ${review.rating}/5\n\n"${review.comment}"`,
     html: `

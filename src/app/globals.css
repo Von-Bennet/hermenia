@@ -207,11 +207,46 @@ a { text-decoration: none; color: inherit; transition: color 0.3s; }
 }
 
 /* Mobile Layout */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 0;
+    }
+
+    .hero-title { 
+        font-size: 3rem; 
+        padding: 0 20px;
+    }
+    
+    .hero-subtitle {
+        padding: 0 20px;
+        font-size: 1rem;
+    }
+
     .main-content {
         grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
     }
-    .hero-title { font-size: 3.5rem; }
+
+    .review-sidebar {
+        position: relative; /* Disable sticky on mobile */
+        top: 0;
+        order: -1; /* Keep form at top? Or remove to put it below content? specific user preference usually varies. keeping as is (top) or let it follow DOM order. 
+                      Actually, usually reviews are read first, then form? 
+                      In the DOM: Sidebar is first. So it appears first. 
+                      I will leave it matching DOM order for now but ensure it scrolls. */
+        width: 100%;
+    }
+    
+    .form-card {
+        padding: 24px;
+    }
+
+    .reviews-header {
+        font-size: 1.5rem;
+    }
 }
 
 /* =========================================
@@ -389,3 +424,12 @@ a { text-decoration: none; color: inherit; transition: color 0.3s; }
 .text-status { margin-top: 1rem; font-size: 0.9rem; }
 .success { color: #4CAF50; }
 .error { color: #F44336; }
+
+/* Hide Next.js Dev Overlay/Toast */
+nextjs-portal,
+#next-route-announcer {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
