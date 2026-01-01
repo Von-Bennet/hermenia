@@ -75,3 +75,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function DELETE() {
+  try {
+    await dbConnect();
+    const result = await Review.deleteMany({});
+    console.log(`[API] Cleared ${result.deletedCount} reviews`);
+    return NextResponse.json({ 
+      success: true, 
+      message: `Deleted ${result.deletedCount} reviews` 
+    });
+  } catch (error) {
+    console.error('Database Error:', error);
+    return NextResponse.json({ error: 'Failed to clear reviews' }, { status: 500 });
+  }
+}

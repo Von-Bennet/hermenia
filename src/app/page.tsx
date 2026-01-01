@@ -72,6 +72,15 @@ export default async function Home() {
         </section>
 
       </main>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <p className="footer-text">
+            © {new Date().getFullYear()} The 12th Fail. All Rights Reserved.
+          </p>
+        </div>
+      </footer>
     </>
   );
 }

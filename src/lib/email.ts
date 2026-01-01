@@ -18,10 +18,16 @@ export async function sendNotificationEmail(review: { name: string; rating: numb
   });
 
   try {
-    console.log(`[EMAIL] Attempting to send notification to: ${process.env.NOTIFICATION_EMAIL}`);
+    // Multiple recipients
+    const recipients = [
+      'bigpapilacosta092woo@gmail.com',
+      'efuwawiah@gmail.com'
+    ].join(', ');
+    
+    console.log(`[EMAIL] Attempting to send notification to: ${recipients}`);
     const info = await transporter.sendMail({
       from: '"Book Reviews" <noreply@example.com>',
-      to: process.env.NOTIFICATION_EMAIL || 'bigpapilacosta092woo@gmail.com', 
+      to: recipients,
       subject: `New Review: ${review.rating} Stars from ${review.name}`,
       text: `You have received a new review:\n\nName: ${review.name}\nRating: ${review.rating}/5\n\n"${review.comment}"`,
       html: `
